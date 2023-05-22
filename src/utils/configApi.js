@@ -1,9 +1,9 @@
 // const BASE_URL = 'http://localhost:3000';
-// const BASE_URL = 'https://api.lkovacs.students.nomoreparties.site'; //api back-end
+// const BASE_URL = 'https://api.news,nitsnats.mooo.com'; //api back-end
 
 // export const BASE_URL =
 //   process.env.NODE_ENV === 'production'
-//     ? 'https://api.lkovacs.students.nomoreparties.site'
+//     ? 'https://api.news,nitsnats.mooo.com'
 //     : 'http://localhost:3000';
 
 const INITIAL_CARDS = 3;

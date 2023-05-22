@@ -34,7 +34,7 @@
   mask-repeat: no-repeat;
   mask-position: right;
   background-color: #fff;
-  mask-image: url('../../images/menu.svg');
+  mask-image: url('../../images/menu_icon_white.svg');
   mask-position: center;
   mask-size: cover;
   display: none;
@@ -83,7 +83,7 @@
   mask-repeat: no-repeat;
   mask-position: right;
   background-color: #fff;
-  mask-image: url('../../images/logout.svg');
+  mask-image: url('../../images/logout_white.svg');
   display: block;
   width: 17px;
   height: 16px;
@@ -159,7 +159,7 @@
     display: block;
   }
   .header__icon_active {
-    mask-image: url('../../images/menu_active.svg');
+    mask-image: url('../../images/close_icon.svg');
   }
   .header__icon_signin_active {
     display: none;

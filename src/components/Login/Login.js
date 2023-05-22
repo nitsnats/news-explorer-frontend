@@ -6,13 +6,8 @@ import PopupWithForm from '../PopupWithForm/PopupWithForm';
 
 function Login({
   email,
-  loggedIn,
-  userEmail,
-  setUserEmail,
   password,
-  setPassword,
   handleLoginSubmit,
-  setEmail,
 }) {
 //   const history = useHistory();
 

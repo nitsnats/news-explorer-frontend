@@ -28,7 +28,7 @@
     margin: auto;
     height: 19px;
     width: 14px;
-    background-image: url('../../images/bookmark.svg');
+    background-image: url('../../images/save_icon.svg');
     background-position: center;
     background-repeat: no-repeat;
     opacity: .4;
@@ -44,7 +44,7 @@
     margin: auto;
     height: 19px;
     width: 14px;
-    background-image: url('../../images/bookmark-saved.svg');
+    background-image: url('../../images/save_icon_marked.svg');
     background-position: center;
     background-repeat: no-repeat;
     opacity: 1;
@@ -71,7 +71,7 @@
     margin: auto;
     height: 23px;
     width: 23px;
-    background-image: url('../../images/trash.svg');
+    background-image: url('../../images/trash_icon.svg');
     background-position: center;
     background-repeat: no-repeat;
     opacity: .4;

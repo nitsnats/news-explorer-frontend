@@ -1,11 +1,12 @@
 import React, { useState, useEffect, useCallback } from 'react';
-import {
-  BrowserRouter as Router,
-  Route,
-  Switch,
-  Redirect,
-  useHistory,
-} from 'react-router-dom';
+import { Switch, Route, useHistory, Redirect } from "react-router-dom";
+// import {
+//   BrowserRouter as Router,
+//   Route,
+//   Switch,
+//   Redirect,
+//   useHistory,
+// } from 'react-router-dom';
 import { CurrentUserContext } from '../../contexts/CurrentUserContext';
 import Header from '../Header/Header';
 import Footer from '../Footer/Footer';
@@ -137,7 +138,7 @@ function signoutHandler() {
       return (
         <CurrentUserContext.Provider value={currentUser}>
           <div className='page'>
-            <Router>
+            <Route>
               <Switch>
                 <Route exact path='/'>
                   <Header
@@ -201,7 +202,7 @@ function signoutHandler() {
                 </Route>
               </Switch>
               <Redirect from='*' to='/' />
-            </Router>
+            </Route>
             {isFormPopupOpen ? (
               <Popup
                 setIsPopupOpen={setIsPopupOpen}

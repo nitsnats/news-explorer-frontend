@@ -7,9 +7,7 @@ function Register({
   handleRegisterSubmit,
 //   history,
   email,
-  setEmail,
   password,
-  setPassword,
 }) {
 //   useEffect(() => {
 //     if (localStorage.getItem('token')) {

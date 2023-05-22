@@ -29,7 +29,7 @@ const NewsCard = ({
     } else {
       return date.split('T')[0];
     }
-  };
+  }
 
   async function handleDelete() {
     const cardDeleted = await deleteArticleHandler(cardId);

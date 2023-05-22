@@ -119,11 +119,11 @@ const PopupWithForm = ({
     }
 
     if (username === null) {
-    } else if (!username) {
+     if (!username) {
       errors.username = 'Username is a required field.';
     } else if (username.length < 5) {
       errors.username = 'Username must be at least 6 characters';
-    }
+    }}
     return errors;
   }
 

@@ -172,7 +172,7 @@ const SearchForm = ({
     <section className='search-container'>
       <div className='search-container__content'>
         <h2 className='search-container__title'>
-          What's going on in the world?
+          What&apos;s going on in the world?
         </h2>
         <p className='search-container__subtitle'>
           Find the latest news on any topic and save them in your personal

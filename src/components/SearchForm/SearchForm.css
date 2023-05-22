@@ -1,5 +1,5 @@
 .search-container {
-    background-image: url('../../images/header.png');
+    background-image: url('../../images/background.png');
     background-repeat: no-repeat;
     background-position: center;
     margin: 0;
@@ -120,7 +120,7 @@
   
   @media screen and (max-width: 700px) {
     .search-container {
-      background-image: url('../../images/header-mobile.png');
+      background-image: url('../../images/background_mobile.png');
     }
     .search-container__content {
       width: calc(100% - 20px * 2);
