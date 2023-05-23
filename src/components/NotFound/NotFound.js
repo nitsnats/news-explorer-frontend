@@ -7,7 +7,7 @@ const NotFound = ({ error }) => {
       <h3 className='not-found__title'>
         {error
           ? 'Sorry, something went wrong. Please try again later'
-          : 'Nothing Found. Sorry, but nothing matched your search terms.'}
+          : 'Sorry, Nothing Found.'}
       </h3>
       {/* <h3 className='not-found__title'>Nothing found</h3> */}
       {/* <p className='not-found__text'>

@@ -21,13 +21,6 @@ const Header = (props) => {
   const history = useHistory();
   const willMount = useRef(true);
 
-  // function handlePopup() {
-  //   setIsPopupOpen(true);
-  //   setFormPopup(true);
-  //   setIsRegisterPopup(false);
-  //   setIsNavOpen(false);
-  // }
-
   function setIsNavOpenStatus() {
     if (isFormPopupOpen) {
       setIsNavOpen(false);

@@ -13,9 +13,6 @@ function Footer() {
         <div className='footer__content-container'>
           <ul className='footer__content footer__links'>
             <li className='footer__item'>
-              {/* <a className='footer__link' href='/'>
-              Home
-            </a> */}
               <Link className='footer__link' to='/'>
                 Home
               </Link>

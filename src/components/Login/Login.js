@@ -1,7 +1,5 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-// import React, { useEffect } from 'react';
-// import { Link, useHistory } from 'react-router-dom';
 import PopupWithForm from '../PopupWithForm/PopupWithForm';
 
 function Login({
@@ -9,14 +7,6 @@ function Login({
   password,
   handleLoginSubmit,
 }) {
-//   const history = useHistory();
-
-//   useEffect(() => {
-//     if (loggedIn) {
-//       history.push('/main');
-//       setUserEmail(email || userEmail);
-//     }
-//   });
 
   return (
     <PopupWithForm

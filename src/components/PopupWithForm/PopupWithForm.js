@@ -1,5 +1,4 @@
 import React, { useState, useRef } from 'react';
-// import validator from 'validator';
 
 const PopupWithForm = ({
   isRegisterPopup,
@@ -163,11 +162,6 @@ const PopupWithForm = ({
     setBadRequest(false);
     setIsRegisterPopup(!isRegisterPopup);
   }
-
-  // function handleSignin() {
-  //   props.setLoggedIn(true);
-  //   closePopup();
-  // }
 
   function handleRegister() {
     if (isRegisterPopup) {

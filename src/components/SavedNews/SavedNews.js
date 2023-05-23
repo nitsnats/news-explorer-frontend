@@ -14,13 +14,6 @@ const SavedNews = ({
 }) => {
   const [saveNews, setSaveNews] = useState();
   const [sortKeyword, setSortKeyword] = useState([]);
-  // const history = useHistory();
-
-  // useEffect(() => {
-  //   if (localStorage.getItem('token')) {
-  //     history.push('/saved-news');
-  //   }
-  // }, [history]);
 
   function deleteCard(id) {
     if (id) {

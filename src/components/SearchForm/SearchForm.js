@@ -165,7 +165,6 @@ const SearchForm = ({
       return;
     }
     return;
-    // eslint-disable-next-line
   }, [isLoggedIn]);
 
   return (
@@ -179,14 +178,6 @@ const SearchForm = ({
           account
         </p>
         <form onSubmit={searchEventHandler} className='search-bar'>
-          {/* <span
-             id={`${props.name}-error`}
-            className={`search__input-error ${
-               keywordValid ? '' : 'search__input-error_visible'
-             }`}
-           >
-             Please enter a keyword
-           </span> */}
           <input
             ref={searchRef}
             onKeyUp={handleEnterKey}
@@ -199,15 +190,6 @@ const SearchForm = ({
           <button type='submit' className='search-bar__button'>
             Search
           </button>
-          {/* <button
-             className={`search-bar__button ${
-               keywordValid ? 'search-bar__button' : 'search-bar__button_disabled'
-             }`}
-             disabled
-             onClick={submit}
-           >
-             Search
-           </button> */}
         </form>
       </div>
     </section>

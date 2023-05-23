@@ -37,9 +37,6 @@ const NewsCard = ({
       setIsSavedIcon(false);
       return;
     } 
-    // else {
-    //   throw new Error('Article not saved');
-    // }
   }
 
   async function handleArticleSave() {

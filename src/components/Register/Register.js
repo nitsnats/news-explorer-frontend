@@ -9,11 +9,6 @@ function Register({
   email,
   password,
 }) {
-//   useEffect(() => {
-//     if (localStorage.getItem('token')) {
-//       history.push('/main');
-//     }
-//   }, [history]);
 
   return (
     <PopupWithForm
@@ -22,9 +17,6 @@ function Register({
       //   onClose={props.onClose}
       title='Sign up'
       link='Sign in'
-      //   linkClick={props.linkClick}
-      //   handleSubmit={signUpSubmit}
-      //   valid={formValid}
     >
       <div className='auth__container'>
         {/* <h2 className='auth__title'>Sign up</h2> */}

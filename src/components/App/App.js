@@ -1,12 +1,5 @@
 import React, { useState, useEffect, useCallback } from 'react';
 import { Switch, Route, useHistory, Redirect } from "react-router-dom";
-// import {
-//   BrowserRouter as Router,
-//   Route,
-//   Switch,
-//   Redirect,
-//   useHistory,
-// } from 'react-router-dom';
 import { CurrentUserContext } from '../../contexts/CurrentUserContext';
 import Header from '../Header/Header';
 import Footer from '../Footer/Footer';
@@ -63,13 +56,7 @@ const App = () => {
     return mainApi.authorize(email, password);
   }
 
-  // function signoutHandler() {
-  //   setLoggedIn(false);
-  //   localStorage.clear();
-  //   return mainApi.logout();
-  // }
-
-function signoutHandler() {
+  function signoutHandler() {
   setLoggedIn(false);
   setIsNavOpen(false);
   localStorage.removeItem('articles');
@@ -115,14 +102,7 @@ function signoutHandler() {
           setServerError(false);
           setLoggedIn(true);
         })
-        // .catch((err) => {
-        //   if (err === 'Error: 401') {
-        //     setLoggedIn(false);
-        //     setServerError(false);
-        //   } else {
-        //     setServerError(true);
-        //   }
-        // });
+
         .catch((err) => console.log(err));
     }
     // setLoggedIn(false);
