@@ -1,1 +1,1 @@
-# tmp
+# news-explorer-frontend
