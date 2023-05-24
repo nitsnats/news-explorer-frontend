@@ -134,15 +134,15 @@ class MainApi {
       );
     }
   
-    deleteArticle(articleId, token) {
+    deleteArticle(articleId) { // , token
       // const token = localStorage.removeItem('token');
       return fetch(`${this._baseUrl}/articles/${articleId}`, {
         method: 'DELETE',
         headers: {
           Accept: 'application/json',
           'Content-Type': 'application/json',
-          authorization: `Bearer ${token}`,
-          // authorization: `Bearer ${localStorage.getItem('token')}`,
+          // authorization: `Bearer ${token}`,
+          authorization: `Bearer ${localStorage.getItem('token')}`,
         },
       })
       // .then((res) => {
@@ -152,11 +152,12 @@ class MainApi {
   }
   
   const mainApi = new MainApi({
-    // baseUrl: 'http://localhost:3001', //localhost
-    baseUrl: 'https://api.news.nitsnats.mooo.com', //api back-end
+    baseUrl: 'http://localhost:3001', //localhost
+    // baseUrl: 'https://api.news.nitsnats.mooo.com', //api back-end
     headers: {
-      // 'Content-Type': 'application/json',
+      'Content-Type': 'application/json',
       // Authorization: `Bearer ${token}`,
+      authorization: "4cdae314-7e8a-4bed-8ada-70ad33c12e13",//`bearer ${localStorage.getItem('jwt)}`
     },
   });
   

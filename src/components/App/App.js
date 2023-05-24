@@ -1,5 +1,11 @@
 import React, { useState, useEffect, useCallback } from 'react';
-import { Switch, Route, useHistory, Redirect } from "react-router-dom";
+import {
+  BrowserRouter as Router,
+  Route,
+  Switch,
+  Redirect,
+  useHistory,
+} from 'react-router-dom';
 import { CurrentUserContext } from '../../contexts/CurrentUserContext';
 import Header from '../Header/Header';
 import Footer from '../Footer/Footer';
@@ -56,7 +62,13 @@ const App = () => {
     return mainApi.authorize(email, password);
   }
 
-  function signoutHandler() {
+  // function signoutHandler() {
+  //   setLoggedIn(false);
+  //   localStorage.clear();
+  //   return mainApi.logout();
+  // }
+
+function signoutHandler() {
   setLoggedIn(false);
   setIsNavOpen(false);
   localStorage.removeItem('articles');
@@ -102,7 +114,14 @@ const App = () => {
           setServerError(false);
           setLoggedIn(true);
         })
-
+        // .catch((err) => {
+        //   if (err === 'Error: 401') {
+        //     setLoggedIn(false);
+        //     setServerError(false);
+        //   } else {
+        //     setServerError(true);
+        //   }
+        // });
         .catch((err) => console.log(err));
     }
     // setLoggedIn(false);
@@ -118,7 +137,7 @@ const App = () => {
       return (
         <CurrentUserContext.Provider value={currentUser}>
           <div className='page'>
-            <Route>
+            <Router>
               <Switch>
                 <Route exact path='/'>
                   <Header
@@ -182,7 +201,7 @@ const App = () => {
                 </Route>
               </Switch>
               <Redirect from='*' to='/' />
-            </Route>
+            </Router>
             {isFormPopupOpen ? (
               <Popup
                 setIsPopupOpen={setIsPopupOpen}

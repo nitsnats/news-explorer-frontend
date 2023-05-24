@@ -35,6 +35,8 @@ const NewsCardList = ({
       return cards.slice(0, visibleCards).map((card, key) => {
         return (
           <NewsCard
+            // key={card.url}
+            // _id={card._id}
             key={key}
             _id={card._id || Math.random()}
             keyword={card.keyword}
