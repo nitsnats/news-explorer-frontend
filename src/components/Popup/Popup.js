@@ -9,7 +9,7 @@ const Popup = (props) => {
     <section className={`modal ${props.isPopupOpen ? 'modal_visible' : ''}`}>
       <div className={`popup ${props.isPopupOpen ? 'popup_visible' : ''}`}>
         <div className='popup-container'>
-          <i className='popup__exit' onClick={closePopup}></i>
+          <button className='popup__exit' type='button' onClick={closePopup}/>
           {props.children}
         </div>
       </div>

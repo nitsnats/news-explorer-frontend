@@ -6,7 +6,7 @@ const NewsCardList = (props) => {
     <section className='news-card-list'>
       <div className='news-card-list__wrapper'>
         {!props.isSavedNews ? (
-          <h2 className='news-card-list__title'>Search results</h2>
+          <h1 className='news-card-list__title'>Search results</h1>
         ) : (
           ''
         )}

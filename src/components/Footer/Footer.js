@@ -10,7 +10,7 @@ function Footer() {
       <p className='footer__copyright'>
           © {new Date().getFullYear()} Nitsa | New API
       </p>
-      <div className='footer__content-container'>
+      <nav className='footer__content-container'>
         <ul className='footer__content footer__links'>
           <li className='footer__item'>
             <Link className='footer__link' to='/'>
@@ -48,7 +48,7 @@ function Footer() {
             </a>
           </li>
         </ul>
-      </div>
+      </nav>
     </footer>
   );
 }

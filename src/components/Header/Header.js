@@ -40,7 +40,7 @@ const Header = (props) => {
   }
   return (
     <header className={`header ${isNavOpen ? 'header_nav-active' : ''}`}>
-      <div className='header__size'>
+      <nav className='header__size'>
         <p className={`header__logo ${navigationLink('header__logo_dark')} `}>
           NewsExplorer
         </p>
@@ -85,7 +85,7 @@ const Header = (props) => {
             </button>
           )}
         </div>
-      </div>
+      </nav>
     </header>
   );
 };

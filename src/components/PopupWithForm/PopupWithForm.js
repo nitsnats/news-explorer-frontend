@@ -91,7 +91,7 @@ const PopupWithForm = (props) => {
     if (props.isRegisterPopup) {
       return (
         <>
-          <h2 className='popup__title'>Sign up</h2>
+          <h1 className='popup__title'>Sign up</h1>
           <form
             onChange={() => registerFormOnChange()}
             onSubmit={handleRegisterSubmit}
@@ -170,7 +170,7 @@ const PopupWithForm = (props) => {
     } else {
       return (
         <>
-          <h2 className='popup__title'>Sign in</h2>
+          <h1 className='popup__title'>Sign in</h1>
           <form
             onChange={signinFormOnChange}
             onSubmit={handleSigninSubmit}

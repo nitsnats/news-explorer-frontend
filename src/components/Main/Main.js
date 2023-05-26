@@ -9,7 +9,7 @@ const Main = (props) => {
   const [isLoading, setIsLoading] = useState(false);
 
   return (
-    <div className='main'>
+    <main className='main'>
       <SearchForm setIsLoading={setIsLoading} />
       {isLoading ? (
         <div>
@@ -24,7 +24,7 @@ const Main = (props) => {
         ></NewsCardList>
       )}
       <About />
-    </div>
+    </main>
   );
 };
 

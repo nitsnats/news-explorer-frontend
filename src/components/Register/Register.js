@@ -5,9 +5,7 @@ import PopupWithForm from '../PopupWithForm/PopupWithForm';
 function Register({
   handleRegisterSubmit,
   email,
-  setEmail,
   password,
-  setPassword,
 }) {
 
   return (
