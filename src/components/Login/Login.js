@@ -4,23 +4,22 @@ import PopupWithForm from '../PopupWithForm/PopupWithForm';
 
 function Login({
   email,
+  loggedIn,
+  userEmail,
+  setUserEmail,
   password,
+  setPassword,
   handleLoginSubmit,
+  setEmail,
 }) {
 
   return (
     <PopupWithForm
-      //   isOpen={props.isSignInOpen}
       buttonText='Sign in'
-      //   onClose={props.onClose}
       title='Sign in'
       link='Sign up'
-      //   linkClick={props.linkClick}
-      //   handleSubmit={handleSignInSubmit}
-      //   valid={formValid}
     >
       <div className='auth__container'>
-        {/* <h2 className='auth__title'>Sign in</h2> */}
         <form
           action='#'
           className='auth'
@@ -36,7 +35,6 @@ function Login({
             errorText='Invalid email address'
             required
             value={email}
-            // onChange={(e) => setEmail(e.target.value)}
           />
           <input
             className='form__input-dark'
@@ -46,7 +44,6 @@ function Login({
             errorText='Password requires additional characters'
             required
             value={password}
-            // onChange={(e) => setPassword(e.target.value)}
           />
           <button
             type='submit'

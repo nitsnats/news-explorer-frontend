@@ -1,25 +1,22 @@
 import React from 'react';
-// import React, { useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import PopupWithForm from '../PopupWithForm/PopupWithForm';
 
 function Register({
   handleRegisterSubmit,
-//   history,
   email,
+  setEmail,
   password,
+  setPassword,
 }) {
 
   return (
     <PopupWithForm
-      //   isOpen={props.isSignUpOpen}
       buttonText='Sign up'
-      //   onClose={props.onClose}
       title='Sign up'
       link='Sign in'
     >
       <div className='auth__container'>
-        {/* <h2 className='auth__title'>Sign up</h2> */}
         <form
           action='#'
           className='auth'
@@ -34,7 +31,6 @@ function Register({
             errorText='Invalid email address'
             required
             value={email}
-            // onChange={(e) => setEmail(e.target.value)}
           />
           <input
             className='form__input-dark'
@@ -44,7 +40,6 @@ function Register({
             errorText='Password requires additional characters'
             required
             value={password}
-            // onChange={(e) => setPassword(e.target.value)}
           />
           <input
             className='form__input-dark'
@@ -53,8 +48,6 @@ function Register({
             type='text'
             errorText='This username is not available'
             required
-            // value={username}
-            // onChange={(e) => setUsername(e.target.value)}
           />
           <button
             type='submit'
