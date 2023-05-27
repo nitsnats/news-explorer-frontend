@@ -1,9 +1,8 @@
 .footer{
-      display: flex;
-      flex-direction: row;
-      justify-content: space-between;
-      padding: 32px 40px;
-      box-sizing: border-box;
+    display: flex;
+    flex-direction: row;
+    margin: 30px 104px;   
+    justify-content: space-between;
   }
   .footer__copywright{
       font-family: 'Roboto', sans-serif;
@@ -12,14 +11,9 @@
       line-height: 22px;
       color: #B6BCBF;
       align-items: flex-end;
-      margin-block-start: 0;
-      margin-block-end: 0;
   }
   .footer__content-container{
-      /* display: flex; */
       display: flex;
-      flex-direction: row;
-      align-items: center;
   }
   .footer__content{
       list-style: none;
