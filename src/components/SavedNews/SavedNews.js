@@ -1,16 +1,15 @@
 import React from 'react';
 import NewsCardList from '../NewsCardList/NewsCardList';
+// import SavedNewsHeader from '../SavedNewsHeader/SavedNewsHeader';
 
-const SavedNews = (props) => {
+function SavedNews({ pathname }) {
+  
   return (
     <section className='saved-news'>
-      <NewsCardList
-        cards={props.cards}
-        isLoggedIn={props.isLoggedIn}
-        isSavedNews={true}
-      />
+      {/* <SavedNewsHeader /> */}
+      <NewsCardList pathname={pathname} />
     </section>
-  );
-};
+  )
+}
 
 export default SavedNews;
