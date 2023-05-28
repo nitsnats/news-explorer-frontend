@@ -73,6 +73,6 @@
     }
     .footer__copywright{
         margin: 38px 0 0 20px;
-        align-self: start;
+        align-self: self-start;
     }
   }

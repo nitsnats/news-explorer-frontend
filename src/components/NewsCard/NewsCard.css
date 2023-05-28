@@ -210,7 +210,7 @@
   text-transform: uppercase;
 }
 
-@media screen and (max-width: 1050px) {
+@media screen and (max-width: 1280px) {
   .news-card {
     width: 224px;
     height: 420px;
