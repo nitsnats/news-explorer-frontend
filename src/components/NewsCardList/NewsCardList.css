@@ -166,3 +166,9 @@
     padding: 0;
   }
 }
+
+@media screen and (max-width: 424px) {
+  .news-card-list__show-more {
+    width: 228px;
+  }  
+}
