@@ -1,16 +1,16 @@
 import React from 'react';
 
-const Popup = ({ setIsPopupOpen, setFormPopup, isPopupOpen, children }) => {
+const Popup = (props) => {
   function closePopup() {
-    setIsPopupOpen(false);
-    setFormPopup(false);
+    props.togglePopup(false);
+    props.toggleFormPopup(false);
   }
   return (
-    <section className={`modal ${isPopupOpen ? 'modal_visible' : ''}`}>
-      <div className={`popup ${isPopupOpen ? 'popup_visible' : ''}`}>
+    <section className={`modal ${props.isPopupOpen ? 'modal_visible' : ''}`}>
+      <div className={`popup ${props.isPopupOpen ? 'popup_visible' : ''}`}>
         <div className='popup-container'>
-          <i className='popup__exit' onClick={closePopup}></i>
-          {children}
+          <button className='popup__exit' type='button' onClick={closePopup}/>
+          {props.children}
         </div>
       </div>
     </section>
