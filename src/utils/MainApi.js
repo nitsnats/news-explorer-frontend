@@ -17,17 +17,18 @@ class MainApi {
         },
         body: JSON.stringify({ email, password, name }),
       })
+      .then(checkResponse);
         //  .then((res) => {
         //    return res.json();
         //  });
-        .then((res) => {
-          if (res.status === 201) {
-            return res.json();
-          } else {
-            throw new Error('409 - Unsuccessful registration');
-          }
-        }
-    );
+        // .then((res) => {
+        //   if (res.status === 201) {
+        //     return res.json();
+        //   } else {
+        //     throw new Error('409 - Unsuccessful registration');
+        //   }
+        // }
+    // );
   }
 
   authorize(email, password) {
@@ -39,19 +40,20 @@ class MainApi {
         },
         body: JSON.stringify({ email, password }),
       })
-        .then((res) => {
-          return res.json();
-        })
-        // .then((res) => res.json())
-        .then((data) => {
-          if (data.token) {
-            localStorage.setItem('token', data.token);
-            return data;
-            // } else {
-            //   return;
-          }
-        }
-    );
+      .then(checkResponse);
+    //     .then((res) => {
+    //       return res.json();
+    //     })
+    //     // .then((res) => res.json())
+    //     .then((data) => {
+    //       if (data.token) {
+    //         localStorage.setItem('token', data.token);
+    //         return data;
+    //         // } else {
+    //         //   return;
+    //       }
+    //     }
+    // );
   }
 
   getUserInfo() {
@@ -65,6 +67,7 @@ class MainApi {
           authorization: `Bearer ${localStorage.getItem('token')}`,
         },
       })
+      .then(checkResponse);
         // .then((res) => {
         //   return res.ok
         //     ? res.json()
@@ -77,12 +80,12 @@ class MainApi {
         // .then((res) => {
         //     return res.ok ? res.json() : Promise.reject(`Error: ${res.status}`);
         // });
-        .then((res) => {
-          if (res.ok) {
-            return res.json();
-          }
-        }
-    );
+    //     .then((res) => {
+    //       if (res.ok) {
+    //         return res.json();
+    //       }
+    //     }
+    // );
   }
   getArticles() {
     // getArticles(token) {
@@ -94,12 +97,14 @@ class MainApi {
         // authorization: `Bearer ${token}`,
         authorization: `Bearer ${localStorage.getItem('token')}`,
       },
-    }).then((res) => {
-      if (res.ok) {
-        return res.json();
-      }
-    });
-    // .then((res) => res.json())
+    })
+    .then(checkResponse);
+    // .then((res) => {
+    //   if (res.ok) {
+    //     return res.json();
+    //   }
+    // });
+    // // .then((res) => res.json())
   }
 
   addArticle(article) {
@@ -114,6 +119,7 @@ class MainApi {
         },
         body: JSON.stringify(article),
       })
+      .then(checkResponse);
         // .then((res) => {
         //   if (res.ok) {
         //     return res.json();
@@ -124,10 +130,10 @@ class MainApi {
         //       return data;
         //     })
         // );
-        .then((res) => {
-          return res.ok ? res.json() : Promise.reject(`Error: ${res.status}`);
-        }
-    );
+    //     .then((res) => {
+    //       return res.ok ? res.json() : Promise.reject(`Error: ${res.status}`);
+    //     }
+    // );
   }
 
   deleteArticle(articleId, token) {
@@ -141,11 +147,15 @@ class MainApi {
         // authorization: `Bearer ${localStorage.getItem('token')}`,
       },
     })
+    .then(checkResponse);
     // .then((res) => {
     //   return res.ok ? res.json() : Promise.reject(`Error: ${res.status}`);
     // });
   }
 }
+
+const checkResponse = (res) =>
+  res.ok ? res.json() : Promise.reject(res.statusText);
 
 // let node_env = "production";
 
@@ -166,3 +176,8 @@ const mainApi = new MainApi({
 });
 
 export default mainApi;
+
+// .then(checkResponse);
+
+
+
