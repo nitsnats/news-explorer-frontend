@@ -165,7 +165,7 @@ const checkResponse = (res) =>
 //     : "http://localhost:3000";
 
 const mainApi = new MainApi({
-  baseUrl: 'http://localhost:3001', //localhost
+  baseUrl: 'http://localhost:3000', //localhost
   // baseUrl: 'http://localhost:8080', //localhost
   // baseUrl: 'https://api.news.nitsnats.mooo.com', //api back-end
   // baseUrl: base_url,
