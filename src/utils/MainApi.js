@@ -68,18 +68,18 @@ class MainApi {
           authorization: `Bearer ${localStorage.getItem('token')}`,
         },
       })
-        // .then((res) => {
-        //   return res.ok
-        //     ? res.json()
-        //     : Promise.reject(`${res.status} - ${res.message}`);
-        // })
-        // .then((data) => {
-        //   return data;
-        // })
-        // .catch((err) => console.log(err));
-        // .then((res) => {
-        //     return res.ok ? res.json() : Promise.reject(`Error: ${res.status}`);
-        // });
+        .then((res) => {
+          return res.ok
+            ? res.json()
+            : Promise.reject(`${res.status} - ${res.message}`);
+        })
+        .then((data) => {
+          return data;
+        })
+        .catch((err) => console.log(err))
+        .then((res) => {
+            return res.ok ? res.json() : Promise.reject(`Error: ${res.status}`);
+        })
         .then((res) => {
           if (res.ok) {
             return res.json();
@@ -152,8 +152,8 @@ class MainApi {
 }
 
 const mainApi = new MainApi({
-  // baseUrl: 'http://localhost:3001', //localhost
-  baseUrl: 'https://api.news.nitsnats.mooo.com', //api back-end
+  baseUrl: 'http://localhost:3001', //localhost
+  // baseUrl: 'https://api.news.nitsnats.mooo.com', //api back-end
   headers: {
     // 'Content-Type': 'application/json',
     // Authorization: `Bearer ${token}`,
