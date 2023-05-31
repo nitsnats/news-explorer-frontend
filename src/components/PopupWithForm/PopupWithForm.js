@@ -41,11 +41,10 @@ const PopupWithForm = ({
           setRegisterSuccessPopup(true);
         }
       })
-      .catch((err) => {
+      .catch(() => {
         setRegisterSuccess(false);
         setFormPopup(false);
         setRegisterSuccessPopup(true);
-        console.log(err);
       });
   }
 
@@ -53,7 +52,6 @@ const PopupWithForm = ({
     e.preventDefault();
     setInputDisable(true);
     signinHandler(emailRef.current.value, passwordRef.current.value)
-    console.log(emailRef.current.value)
       .then((res) => {
         if (res) {
           localStorage.setItem('token', res.token);
@@ -89,7 +87,6 @@ const PopupWithForm = ({
         } else {
           setSigninFailed(true);
           setInputDisable(false);
-          console.log(err);
         }
       });
   }

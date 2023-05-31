@@ -9,8 +9,7 @@ class MainApi {
   // }
 
   register(email, password, name) {
-    return (
-      fetch(`${this._baseUrl}/signup`, {
+    return fetch(`${this._baseUrl}/signup`, {
         method: 'POST',
         headers: {
           Acccept: 'application/json',
@@ -27,13 +26,12 @@ class MainApi {
           } else {
             throw new Error('409 - Unsuccessful registration');
           }
-        })
+        }
     );
   }
 
   authorize(email, password) {
-    return (
-      fetch(`${this._baseUrl}/signin`, {
+    return fetch(`${this._baseUrl}/signin`, {
         method: 'POST',
         headers: {
           Acccept: 'application/json',
@@ -52,14 +50,13 @@ class MainApi {
             // } else {
             //   return;
           }
-        })
+        }
     );
   }
 
   getUserInfo() {
     // getUserInfo(token) {
-    return (
-      fetch(`${this._baseUrl}/users/me`, {
+    return fetch(`${this._baseUrl}/users/me`, {
         method: 'GET',
         headers: {
           Acccept: 'application/json',
@@ -68,23 +65,23 @@ class MainApi {
           authorization: `Bearer ${localStorage.getItem('token')}`,
         },
       })
-        .then((res) => {
-          return res.ok
-            ? res.json()
-            : Promise.reject(`${res.status} - ${res.message}`);
-        })
-        .then((data) => {
-          return data;
-        })
-        .catch((err) => console.log(err))
-        .then((res) => {
-            return res.ok ? res.json() : Promise.reject(`Error: ${res.status}`);
-        })
+        // .then((res) => {
+        //   return res.ok
+        //     ? res.json()
+        //     : Promise.reject(`${res.status} - ${res.message}`);
+        // })
+        // .then((data) => {
+        //   return data;
+        // })
+        // .catch((err) => console.log(err));
+        // .then((res) => {
+        //     return res.ok ? res.json() : Promise.reject(`Error: ${res.status}`);
+        // });
         .then((res) => {
           if (res.ok) {
             return res.json();
           }
-        })
+        }
     );
   }
   getArticles() {
@@ -107,8 +104,7 @@ class MainApi {
 
   addArticle(article) {
     // const token = localStorage.getItem('token');
-    return (
-      fetch(`${this._baseUrl}/articles`, {
+    return fetch(`${this._baseUrl}/articles`, {
         method: 'POST',
         headers: {
           Accept: 'application/json',
@@ -130,7 +126,7 @@ class MainApi {
         // );
         .then((res) => {
           return res.ok ? res.json() : Promise.reject(`Error: ${res.status}`);
-        })
+        }
     );
   }
 
@@ -151,9 +147,18 @@ class MainApi {
   }
 }
 
+// let node_env = "production";
+
+// let base_url =
+//   node_env === "production"
+//     ? "https://api.nitsnats.students.nomoredomainssbs.ru"
+//     : "http://localhost:3000";
+
 const mainApi = new MainApi({
   baseUrl: 'http://localhost:3001', //localhost
+  // baseUrl: 'http://localhost:8080', //localhost
   // baseUrl: 'https://api.news.nitsnats.mooo.com', //api back-end
+  // baseUrl: base_url,
   headers: {
     // 'Content-Type': 'application/json',
     // Authorization: `Bearer ${token}`,
