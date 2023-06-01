@@ -100,8 +100,9 @@ const SearchForm = ({
           })
           .catch((err) => {
             console.log(err);
+            return[];
           });
-        return;
+        // return;
       }
 
       let saveNews;
@@ -187,7 +188,9 @@ const SearchForm = ({
               disableInputs ? 'search-bar__input_disabled' : ''
             }`}
           />
-          <button type='submit' className='search-bar__button'>
+          <button type='submit' className='search-bar__button'
+          onClick={newsSearch}
+          >
             Search
           </button>
         </form>
