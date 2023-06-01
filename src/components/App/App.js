@@ -95,10 +95,11 @@ function signoutHandler() {
   }
 
   async function searchHandler(keyword) {
-    return newsApi.search(keyword);
+    const returnedSearchHandler = await newsApi.search(keyword);
+    return returnedSearchHandler;
   }
 
-  useEffect(() => {
+    useEffect(() => {
     const token = localStorage.getItem('token');
     if (token) {
       mainApi
