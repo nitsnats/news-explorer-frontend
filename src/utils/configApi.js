@@ -1,16 +1,14 @@
 // const BASE_URL = 'http://localhost:3000';
-// const BASE_URL = 'https://api.lkovacs.students.nomoreparties.site'; //api back-end
+// const BASE_URL = 'https://api.'; //api back-end
 
 // export const BASE_URL =
 //   process.env.NODE_ENV === 'production'
-//     ? 'https://api.lkovacs.students.nomoreparties.site'
+//     ? 'https://api.'
 //     : 'http://localhost:3000';
 
 const INITIAL_CARDS = 3;
 const PAGE_SIZE = 100;
 const SEARCH_INTERVAL = 7 * 24 * 3600 * 1000;
-// const API_KEY = 'c7bb67d0266f4b5c87185e2af7bbc706'; // old API KEY 1
-// const API_KEY = '506741011cfa4682bfdb0c0398f42d0a'; // new API KEY 2
 const API_KEY = '6b802b3ca0f849d3b738eec7946ca745'; // API KEY 
 const NEWS_URL = 'https://newsapi.org/v2';
 const PROXY_URL = 'https://nomoreparties.co/news/v2';
