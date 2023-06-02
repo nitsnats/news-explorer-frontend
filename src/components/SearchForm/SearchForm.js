@@ -10,69 +10,38 @@ const SearchForm = ({
   searchHandler,
 }) => {
   const searchRef = useRef();
-  const [disableInputs, setInputDisable] = useState(false);
+  const [disableInputs, setDisableInputs] = useState(false);
   const errorMessage = 'Please enter a keyword';
-
-
-
 
   function searchSort(saveNews) {
     searchHandler(searchRef.current.value)
       .then((res) => {
-        let newArticles = [];
-        let urlArr = [];
-        if (!saveNews) {
-          throw new Error('Saved articles failed');
-        } else if (saveNews.length === 0 || null) {
-          res.forEach((article) => {
-            article.keyword = searchRef.current.value;
-            newArticles.push(article);
-          });
-          return newArticles;
-        } else {
-          saveNews.forEach((card) => {
-            urlArr.push(card.url);
-          });
-          res.forEach((article) => {
-            if (urlArr.includes(article.url)) {
-              article.isSaved = true;
-              saveNews.forEach((card) => {
-                if (card.url === article.url) {
-                  article._id = card._id;
-                }
-                return;
-              });
-            }
-            article.keyword = searchRef.current.value;
-            newArticles.push(article);
-            return;
-          });
-        }
+        let newArticles = res.map(article => {
+          if (saveNews.some(card => card.url === article.url)) {
+            article.isSaved = true;
+            article._id = saveNews.find(card => card.url === article.url)._id;
+          }
+          article.keyword = searchRef.current.value;
+          return article;
+        });
+
         return newArticles;
       })
       .then((articles) => {
-        if (articles) {
-          setVisibleCards(INITIAL_CARDS);
-          setCards(articles);
-          return;
-        } else {
-          setIsLoading(false);
-          disableInputs(false);
-          throw new Error('Unhandled request error');
-        }
-      })
-      .then(() => {
-        setIsLoading(false);
-        setInputDisable(false);
+        setVisibleCards(INITIAL_CARDS);
+        setCards(articles);
       })
       .catch((err) => {
-        setInputDisable(false);
         console.log(err);
+      })
+      .finally(() => {
+        setIsLoading(false);
+        setDisableInputs(false);
       });
   }
 
   function newsSearch() {
-    setInputDisable(true);
+    setDisableInputs(true);
     localStorage.setItem('keyword-search', searchRef.current.value);
     if (searchRef.current.value.length > 0) {
       setIsLoading(true);
@@ -80,47 +49,38 @@ const SearchForm = ({
       if (!isLoggedIn) {
         searchHandler(searchRef.current.value)
           .then((res) => {
-            let newArticles = [];
-            res.forEach((article) => {
+            // console.log(res);
+            // if (!Array.isArray(res)) {
+            //   throw new Error('Invalid response format'); // Throw an error if res is not an array
+            // }
+            let newArticles = res.map(article => {
               article.keyword = searchRef.current.value;
-              newArticles.push(article);
+              return article;
             });
+            console.log(newArticles);
             return newArticles;
           })
           .then((articles) => {
-            if (articles) {
-              setVisibleCards(INITIAL_CARDS);
-              setCards(articles);
-              return;
-            } else {
-              setIsLoading(false);
-              throw new Error('Unhandled request error');
-            }
-          })
-          .then(() => {
-            setInputDisable(false);
-            setIsLoading(false);
+            setVisibleCards(INITIAL_CARDS);
+            setCards(articles);
           })
           .catch((err) => {
             console.log(err);
-            return[];
+          })
+          .finally(() => {
+            setIsLoading(false);
+            setDisableInputs(false);
           });
-        // return;
-      }
-
-      let saveNews;
-      const token = localStorage.getItem('token');
-      if (localStorage.getItem('articles')) {
-        saveNews = JSON.parse(localStorage.getItem('articles'));
-        searchSort(saveNews);
-        return;
       } else {
-        
-        getUserArticles(token)
-          .then((res) => {
-            let newCards = [];
-            res.forEach((card) => {
-              const newCard = {
+        let saveNews = JSON.parse(localStorage.getItem('articles'));
+
+        if (saveNews) {
+          searchSort(saveNews);
+        } else {
+          const token = localStorage.getItem('token');
+          getUserArticles(token)
+            .then((res) => {
+              let newCards = res.map(card => ({
                 _id: card._id,
                 keyword: card.keyword,
                 publishedAt: card.date,
@@ -129,24 +89,17 @@ const SearchForm = ({
                 source: card.source,
                 url: card.link,
                 urlToImage: card.image,
-              };
+              }));
 
-              newCards.push(newCard);
+              localStorage.setItem('articles', JSON.stringify(newCards));
+              searchSort(newCards);
+            })
+            .catch((err) => {
+              console.log(err);
             });
-            return newCards;
-          })
-          .then((newCards) => {
-            localStorage.setItem('articles', JSON.stringify(newCards));
-            searchSort(newCards);
-            return;
-          })
-          .catch((err) => {
-            console.log(err);
-          });
-        return;
+        }
       }
     }
-    return;
   }
 
   function searchEventHandler(e) {
@@ -155,11 +108,9 @@ const SearchForm = ({
   }
 
   function handleEnterKey(e) {
-    e.preventDefault();
     if (e.key === 'Enter') {
       searchEventHandler(e);
     }
-    return;
   }
 
   useEffect(() => {
@@ -167,9 +118,7 @@ const SearchForm = ({
     if (searchResults) {
       searchRef.current.value = searchResults;
       newsSearch();
-      return;
     }
-    return;
   }, [isLoggedIn]);
 
   return (
@@ -192,9 +141,7 @@ const SearchForm = ({
               disableInputs ? 'search-bar__input_disabled' : ''
             }`}
           />
-          <button type='submit' className='search-bar__button'
-          // onClick={newsSearch}
-          >
+          <button type='submit' className='search-bar__button'>
             Search
           </button>
         </form>
