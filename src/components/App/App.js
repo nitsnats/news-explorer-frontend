@@ -94,9 +94,13 @@ function signoutHandler() {
     }
   }
 
+  // async function searchHandler(keyword) {
+  //   const returnedSearchHandler = await newsApi.search(keyword);
+  //   return returnedSearchHandler;
+  // }
+
   async function searchHandler(keyword) {
-    const returnedSearchHandler = await newsApi.search(keyword);
-    return returnedSearchHandler;
+    return newsApi.search(keyword);
   }
 
     useEffect(() => {

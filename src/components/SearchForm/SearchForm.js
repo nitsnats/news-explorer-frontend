@@ -13,6 +13,9 @@ const SearchForm = ({
   const [disableInputs, setInputDisable] = useState(false);
   const errorMessage = 'Please enter a keyword';
 
+
+
+
   function searchSort(saveNews) {
     searchHandler(searchRef.current.value)
       .then((res) => {
@@ -112,6 +115,7 @@ const SearchForm = ({
         searchSort(saveNews);
         return;
       } else {
+        
         getUserArticles(token)
           .then((res) => {
             let newCards = [];
@@ -189,7 +193,7 @@ const SearchForm = ({
             }`}
           />
           <button type='submit' className='search-bar__button'
-          onClick={newsSearch}
+          // onClick={newsSearch}
           >
             Search
           </button>
