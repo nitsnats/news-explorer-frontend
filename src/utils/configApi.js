@@ -9,7 +9,8 @@
 const INITIAL_CARDS = 3;
 const PAGE_SIZE = 100;
 const SEARCH_INTERVAL = 7 * 24 * 3600 * 1000;
-const API_KEY = '6b802b3ca0f849d3b738eec7946ca745'; // API KEY 
+// const API_KEY = '6b802b3ca0f849d3b738eec7946ca745'; // API KEY 
+const API_KEY = '3649f523c46a46e0b39915c4d16a74a5';
 const NEWS_URL = 'https://newsapi.org/v2';
 const PROXY_URL = 'https://nomoreparties.co/news/v2';
 
