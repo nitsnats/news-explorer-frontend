@@ -370,7 +370,8 @@ const SavedNews = ({
           setIsLoading(false);
         });
     }
-  }, [getUserArticles, setIsLoading]);
+  // }, [getUserArticles, setIsLoading]);
+}, []);
 
   const deleteCard = (id) => {
     if (id) {
