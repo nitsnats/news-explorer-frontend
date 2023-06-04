@@ -23,7 +23,19 @@ const NewsCard = ({
     return s.charAt(0).toUpperCase() + s.slice(1);
   };
 
+  // function formatDate() {
+  //   if (isSavedNews) {
+  //     return date.substr(0, 15);
+  //   } else {
+  //     return date.split('T')[0];
+  //   }
+  // }
+
   function formatDate() {
+    if (!date) {
+      return ''; // Handle the case where date is undefined or null
+    }
+    
     if (isSavedNews) {
       return date.substr(0, 15);
     } else {

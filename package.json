@@ -27,7 +27,7 @@
     "build": "react-scripts build",
     "test": "react-scripts test",
     "eject": "react-scripts eject",
-    "deploy": "npm run build && scp -r ./build/* sbarayev2@35.199.181.106:/home/sbarayev2/frontend",
+    "deploy": "npm run build && scp -r ./build/* nitsnats@34.71.69.199:/home/nitsnats/news-explorer-frontend",
     "lint": "rm -rf ./build && eslint --ext .js,.jsx,.ts,.tsx --fix ./src"
   },
   "eslintConfig": {
