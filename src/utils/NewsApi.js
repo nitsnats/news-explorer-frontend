@@ -40,10 +40,10 @@ class NewsApi {
         if (res.ok) {
           return res.json();
         }
-        return Promise.reject(`Error: ${res.status}`);
+        // return Promise.reject(`Error: ${res.status}`);
       })
       
-      // .then((data) => data.articles);
+      .then((data) => data.articles);
   }
 }
 
