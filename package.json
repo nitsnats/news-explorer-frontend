@@ -27,7 +27,8 @@
     "build": "react-scripts build",
     "test": "react-scripts test",
     "eject": "react-scripts eject",
-    "deploy": "npm run build && scp -r ./build/* nitsnats@34.71.69.199:/home/nitsnats/news-explorer-frontend",
+    "predeploy": "npm run build",
+    "deploy": "gh-pages -d build",
     "lint": "rm -rf ./build && eslint --ext .js,.jsx,.ts,.tsx --fix ./src"
   },
   "eslintConfig": {
@@ -56,6 +57,7 @@
     "eslint-config-airbnb-typescript-prettier": "^5.0.0",
     "eslint-plugin-react": "^7.32.2",
     "standardx": "^3.0.0",
-    "typescript": "^4.9.3"
+    "typescript": "^4.9.3",
+    "gh-pages": "^4.0.0"
   }
 }
