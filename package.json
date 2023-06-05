@@ -20,7 +20,7 @@
     "test": "react-scripts test",
     "eject": "react-scripts eject",
     "predeploy": "npm run build",
-    "deploy": "gh-pages -d build"
+    "deploy": "npm run build && scp -r -i ~/.ssh/id_ed25519 ./build/* nitsnats@34.71.69.199:/home/nitsnats/news-explorer-frontend"
   },
   "eslintConfig": {
     "extends": [
