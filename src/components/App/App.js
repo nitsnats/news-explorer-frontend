@@ -1,12 +1,10 @@
 import React, { useState, useEffect, useCallback } from 'react';
 import {
-  // BrowserRouter as Router,
+  BrowserRouter as Router,
   Route,
-  Switch,
-  Redirect,
-  // useHistory,
+  Routes ,
+  useNavigate ,
 } from 'react-router-dom'; 
-// import { useHistory } from 'react-router-dom';
 import { CurrentUserContext } from '../../contexts/CurrentUserContext';
 import Header from '../Header/Header';
 import Footer from '../Footer/Footer';
@@ -31,7 +29,7 @@ const App = () => {
   const [isNavOpen, setIsNavOpen] = useState(false);
   const [isLoading, setIsLoading] = useState(false);
   const [serverError, setServerError] = useState(null);
-  // const history = useHistory();
+  const history = useNavigate ();
 
   function registrationSuccess() {
     setIsRegisterPopup(false);
@@ -127,8 +125,8 @@ function signoutHandler() {
       return (
         <CurrentUserContext.Provider value={currentUser}>
           <div className='page'>
-            <Route>
-              <Switch>
+            <Router>
+              <Routes >
                 <Route exact path='/'>
                   <Header
                     isLoggedIn={isLoggedIn}
@@ -189,9 +187,9 @@ function signoutHandler() {
                   />
                   <Footer />
                 </Route>
-              </Switch>
-              <Redirect from='*' to='/' />
-            </Route>
+              </Routes >
+              <useNavigate from='*' to='/' />
+            </Router>
             {isFormPopupOpen ? (
               <Popup
                 setIsPopupOpen={setIsPopupOpen}

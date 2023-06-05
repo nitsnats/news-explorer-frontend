@@ -1,7 +1,7 @@
 import React, { useEffect, useRef, useContext } from 'react';
 import { CurrentUserContext } from '../../contexts/CurrentUserContext';
 import Navigation from '../Navigation/Navigation';
-import { useHistory } from 'react-router-dom';
+import { useNavigate  } from 'react-router-dom';
 
 const Header = (props) => {
   const {
@@ -17,7 +17,7 @@ const Header = (props) => {
     setIsNavOpen,
   } = props;
   const currentUser = useContext(CurrentUserContext);
-  const history = useHistory();
+  const history = useNavigate ();
   const willMount = useRef(true);
 
   function setIsNavOpenStatus() {
@@ -55,7 +55,7 @@ const Header = (props) => {
       history.location.state === undefined
     ) {
       return;
-    } else if (history.location.state.Redirect) {
+    } else if (history.location.state.useNavigate) {
       handlePopup();
       return;
     }
