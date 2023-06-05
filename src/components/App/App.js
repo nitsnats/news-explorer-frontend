@@ -1,6 +1,6 @@
 import React, { useState, useEffect, useCallback } from 'react';
 import {
-  BrowserRouter as Router,
+  BrowserRouter,
   Route,
   Routes ,
   useNavigate ,
@@ -125,7 +125,7 @@ function signoutHandler() {
       return (
         <CurrentUserContext.Provider value={currentUser}>
           <div className='page'>
-            <Router>
+            <BrowserRouter>
               <Routes >
                 <Route exact path='/'>
                   <Header
@@ -189,7 +189,7 @@ function signoutHandler() {
                 </Route>
               </Routes >
               <useNavigate from='*' to='/' />
-            </Router>
+            </BrowserRouter>
             {isFormPopupOpen ? (
               <Popup
                 setIsPopupOpen={setIsPopupOpen}
