@@ -55,7 +55,7 @@ const Header = (props) => {
       history.location.state === undefined
     ) {
       return;
-    } else if (history.location.state.redirected) {
+    } else if (history.location.state.Redirect) {
       handlePopup();
       return;
     }
