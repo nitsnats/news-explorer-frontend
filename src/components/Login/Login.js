@@ -1,7 +1,5 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-// import React, { useEffect } from 'react';
-// import { Link, useNavigate  } from 'react-router-dom';
 import PopupWithForm from '../PopupWithForm/PopupWithForm';
 
 function Login({
@@ -22,7 +20,7 @@ function Login({
           className='auth'
           title='Sign in'
           onSubmit={handleLoginSubmit}
-          to='/main'
+          to='/Main'
         >
           <input
             className='form__input-dark'

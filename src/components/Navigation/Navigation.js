@@ -6,9 +6,10 @@ const Navigation = ({ isLoggedIn, navigationLink, isNavOpen }) => {
     if (isLoggedIn) {
       return (
         <NavLink
-          to='/saved-news'
-          exact={true}
-          activeClassName='navigation__link_active_dark'
+          to='/saved-news/*'
+          // exact={true}
+          exact="true"
+          activeclassname='navigation__link_active_dark'
           className={`navigation__link ${navigationLink(
             'navigation__link_dark'
           )}`}
@@ -25,8 +26,9 @@ const Navigation = ({ isLoggedIn, navigationLink, isNavOpen }) => {
     <div className={`navigation ${isNavOpen ? 'navigation_active' : ''}`}>
       <NavLink
         to='/'
-        exact={true}
-        activeClassName='navigation__link_active'
+        // exact={true}
+        exact="true"
+        activeclassname='navigation__link_active'
         className={`navigation__link ${navigationLink(
           'navigation__link_dark'
         )}`}
