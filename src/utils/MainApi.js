@@ -269,8 +269,8 @@ const checkResponse = (res) =>
   res.ok ? res.json() : Promise.reject(res.statusText);
 
 const mainApi = new MainApi({
-  baseUrl: 'http://localhost:3000',
-  // baseUrl: 'https://api.news.nitsnats.mooo.com',
+  // baseUrl: 'http://localhost:3000',
+  baseUrl: 'https://api.news.nitsnats.mooo.com',
   headers: {},
 });
 
