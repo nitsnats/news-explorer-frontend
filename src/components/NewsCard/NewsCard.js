@@ -153,9 +153,7 @@ const NewsCard = ({
         {keywords()}
         <div
           className='news-card__image'
-          style={{
-            backgroundImage: `url(${image})`,
-          }}
+          style={{ backgroundImage: `url(${image})`}}
         ></div>
         <div className='news-card__info-container'>
           <p className='news-card__date'>{formatDate()}</p>
