@@ -271,7 +271,10 @@ const checkResponse = (res) =>
 const mainApi = new MainApi({
   // baseUrl: 'http://localhost:3000',
   baseUrl: 'https://api.news.nitsnats.mooo.com',
-  headers: {},
+  headers: {
+    Accept: 'application/json',
+    'Content-Type': 'application/json',
+  },
 });
 
 export default mainApi;
