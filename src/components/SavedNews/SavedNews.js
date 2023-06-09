@@ -472,7 +472,7 @@ const SavedNews = ({
       const token = localStorage.getItem('token');
       const cards = JSON.parse(localStorage.getItem('articles'));
 
-      if (cards) {
+      if (cards && cards.length > 0) {
         const keywordRankArr = keywordRank(cards);
         setSortKeyword(keywordRankArr);
         setSaveNews(cards);
