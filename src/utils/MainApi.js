@@ -270,7 +270,7 @@ const checkResponse = (res) =>
 
 const mainApi = new MainApi({
   // baseUrl: 'http://localhost:3000',
-  baseUrl: 'http://104.154.254.83/',
+  baseUrl: 'http://104.154.254.83',
   headers: {
     Accept: 'application/json',
     'Content-Type': 'application/json',
