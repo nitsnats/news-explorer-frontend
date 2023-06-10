@@ -322,24 +322,24 @@ const App = () => {
     return mainApi.authorize(email, password);
   }
 
-  // function signoutHandler() {
-  //   setLoggedIn(false);
-  //   setIsNavOpen(false);
-  //   localStorage.removeItem('articles');
-  //   localStorage.removeItem('token');
-  //   localStorage.removeItem('keyword-search');
-  //   navigate('/');
-  // }
   function signoutHandler() {
-    useEffect(() => {
-      setLoggedIn(false);
-      setIsNavOpen(false);
-      localStorage.removeItem('articles');
-      localStorage.removeItem('token');
-      localStorage.removeItem('keyword-search');
-      navigate('/');
-    }, []);
+    setLoggedIn(false);
+    setIsNavOpen(false);
+    localStorage.removeItem('articles');
+    localStorage.removeItem('token');
+    localStorage.removeItem('keyword-search');
+    navigate('/');
   }
+  // function signoutHandler() {
+  //   useEffect(() => {
+  //     setLoggedIn(false);
+  //     setIsNavOpen(false);
+  //     localStorage.removeItem('articles');
+  //     localStorage.removeItem('token');
+  //     localStorage.removeItem('keyword-search');
+  //     navigate('/');
+  //   }, []);
+  // }
   // const signoutHandler = () => {
   //   setLoggedIn(false);
   //   setIsNavOpen(false);
