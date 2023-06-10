@@ -322,14 +322,14 @@ const App = () => {
     return mainApi.authorize(email, password);
   }
 
-  function signoutHandler() {
-    setLoggedIn(false);
-    setIsNavOpen(false);
-    localStorage.removeItem('articles');
-    localStorage.removeItem('token');
-    localStorage.removeItem('keyword-search');
-    navigate('/');
-  }
+  // function signoutHandler() {
+  //   setLoggedIn(false);
+  //   setIsNavOpen(false);
+  //   localStorage.removeItem('articles');
+  //   localStorage.removeItem('token');
+  //   localStorage.removeItem('keyword-search');
+  //   navigate('/');
+  // }
   function signoutHandler() {
     useEffect(() => {
       setLoggedIn(false);
