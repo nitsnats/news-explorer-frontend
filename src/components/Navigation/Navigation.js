@@ -6,7 +6,7 @@ const Navigation = ({ isLoggedIn, navigationLink, isNavOpen }) => {
     if (isLoggedIn) {
       return (
         <NavLink
-          to='/saved-news/*'
+          to='/saved-news'
           // exact={true}
           exact="true"
           activeclassname='navigation__link_active_dark'
