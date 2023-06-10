@@ -18,7 +18,7 @@
 import { Navigate } from "react-router-dom"
 
 
-export function ProtectedRoute({ isLoggedIn, component: Component, ...props }) {
+ function ProtectedRoute({ isLoggedIn, component: Component, ...props }) {
 
 
 
@@ -27,9 +27,10 @@ export function ProtectedRoute({ isLoggedIn, component: Component, ...props }) {
 
       {
 
-        isLoggedIn ? <Component {...props} isLoggedIn={isLoggedIn} /> : <Navigate to='/' />
+        isLoggedIn ? <Component {...props} isLoggedIn={isLoggedIn} /> : <Navigate to='./' />
 
       }
     </>
   )
 }
+export default ProtectedRoute;
