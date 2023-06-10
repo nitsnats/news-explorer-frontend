@@ -446,7 +446,7 @@ const App = () => {
 
            <Route
               exact
-              path="/saved-news/*"
+              path="/saved-news"
               element={
                 <>
                   <Header
