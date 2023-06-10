@@ -322,14 +322,14 @@ const App = () => {
     return mainApi.authorize(email, password);
   }
 
-  function signoutHandler() {
-    setLoggedIn(false);
-    setIsNavOpen(false);
-    localStorage.removeItem('articles');
-    localStorage.removeItem('token');
-    localStorage.removeItem('keyword-search');
-    navigate('/');
-  }
+  // function signoutHandler() {
+  //   setLoggedIn(false);
+  //   setIsNavOpen(false);
+  //   localStorage.removeItem('articles');
+  //   localStorage.removeItem('token');
+  //   localStorage.removeItem('keyword-search');
+  //   navigate('/');
+  // }
   // function signoutHandler() {
   //   useEffect(() => {
   //     setLoggedIn(false);
@@ -340,18 +340,18 @@ const App = () => {
   //     navigate('/');
   //   }, []);
   // }
-  // const signoutHandler = () => {
-  //   setLoggedIn(false);
-  //   setIsNavOpen(false);
-  //   localStorage.removeItem('articles');
-  //   localStorage.removeItem('token');
-  //   localStorage.removeItem('keyword-search');
-  //   navigate('/');
-  // };
+  const signoutHandler = () => {
+    setLoggedIn(false);
+    setIsNavOpen(false);
+    localStorage.removeItem('articles');
+    localStorage.removeItem('token');
+    localStorage.removeItem('keyword-search');
+    navigate('/');
+  };
   
-  // useEffect(() => {
-  //   signoutHandler();
-  // }, []);
+  useEffect(() => {
+    signoutHandler();
+  }, []);
   
 
   function getUserArticles(token) {
