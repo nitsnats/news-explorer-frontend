@@ -1,16 +1,35 @@
-import React from 'react';
-import { Route, Navigate } from 'react-router-dom';
+// import React from 'react';
+// import { Route, Routes, Navigate } from 'react-router-dom';
 
-function ProtectedRoute({ component: Component, ...props }) {
+// function ProtectedRoute({ component: Component, ...props }) {
+//   return (
+//     <Routes>
+//     <Route>
+//       {() =>
+//         props.isLoggedIn ? <Component {...props} /> : <Navigate to='./' />
+//       }
+//     </Route>
+//     </Routes>
+//   );
+// }
+
+// export default ProtectedRoute;
+
+import { Navigate } from "react-router-dom"
+
+
+export function ProtectedRoute({ isLoggedIn, component: Component, ...props }) {
+
+
+
   return (
-    // <Routes>
-    <Route>
-      {() =>
-        props.isLoggedIn ? <Component {...props} /> : <Navigate to='./' />
-      }
-    </Route>
-    // </Routes>
-  );
-}
+    <>
 
-export default ProtectedRoute;
+      {
+
+        isLoggedIn ? <Component {...props} isLoggedIn={isLoggedIn} /> : <Navigate to='/' />
+
+      }
+    </>
+  )
+}
