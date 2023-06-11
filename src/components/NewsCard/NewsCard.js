@@ -69,6 +69,7 @@ const NewsCard = ({
       if (savedArticleId) {
         setIsSavedIcon(true);
         setCardId(savedArticleId);
+        // console.log(savedArticleId)
         return;
       } else {
         setIsSavedIcon(false);
@@ -142,6 +143,7 @@ const NewsCard = ({
   }, [_id]);
 
   return (
+    
     <li className='news-card'>
       {setDeleteSave()}
       <a
