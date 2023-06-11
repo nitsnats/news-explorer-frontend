@@ -54,8 +54,8 @@ This is a frontend part of the News Explorer project. It is a single page applic
 6. change the baseUrl in the frontend repo src/utils/MainApi.js to http://localhost:3000
 
 # View Repositories
-Frontend: https://github.com/nitsnats/news-explorer-frontend 
-Backend: https://github.com/nitsnats/news-explorer-api
+* Frontend: https://github.com/nitsnats/news-explorer-frontend 
+* Backend: https://github.com/nitsnats/news-explorer-api
 
 # Project Link:
   # https://github.com/nitsnats/news-explorer-frontend.git
