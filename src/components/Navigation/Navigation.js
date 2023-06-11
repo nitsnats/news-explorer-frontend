@@ -6,10 +6,10 @@ const Navigation = ({ isLoggedIn, navigationLink, isNavOpen }) => {
     if (isLoggedIn) {
       return (
         <NavLink
-          to='/saved-news'
+          to='/saved-news/*'
           // exact={true}
-          exact
-          activeClassName='navigation__link_active_dark'
+          exact="true"
+          activeclassname='navigation__link_active_dark'
           className={`navigation__link ${navigationLink(
             'navigation__link_dark'
           )}`}
@@ -27,8 +27,8 @@ const Navigation = ({ isLoggedIn, navigationLink, isNavOpen }) => {
       <NavLink
         to='/'
         // exact={true}
-        exact
-        activeClassName='navigation__link_active'
+        exact="true"
+        activeclassname='navigation__link_active'
         className={`navigation__link ${navigationLink(
           'navigation__link_dark'
         )}`}
@@ -39,38 +39,5 @@ const Navigation = ({ isLoggedIn, navigationLink, isNavOpen }) => {
     </div>
   );
 };
-
-// const Navigation = ({ isLoggedIn, navigationLink, isNavOpen }) => {
-//   function SavedArticlesLink() {
-//     if (isLoggedIn) {
-//       return (
-//         <NavLink
-//           to='/saved-news'
-//           exact
-//           activeClassName='navigation__link_active_dark'
-//           className={`navigation__link ${navigationLink('navigation__link_dark')}`}
-//         >
-//           Saved articles
-//         </NavLink>
-//       );
-//     } else {
-//       return; // Return null instead of an empty statement
-//     }
-//   }
-
-//   return (
-//     <div className={`navigation ${isNavOpen ? 'navigation_active' : ''}`}>
-//       <NavLink
-//         to='/'
-//         exact
-//         activeClassName='navigation__link_active'
-//         className={`navigation__link ${navigationLink('navigation__link_dark')}`}
-//       >
-//         Home
-//       </NavLink>
-//       {SavedArticlesLink()}
-//     </div>
-//   );
-// };
 
 export default Navigation;

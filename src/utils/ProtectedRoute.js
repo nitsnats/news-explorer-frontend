@@ -6,7 +6,7 @@ function ProtectedRoute({ component: Component, ...props }) {
     <Routes>
     <Route>
       {() =>
-        props.isLoggedIn ? <Component {...props} /> : <Navigate to='/' />
+        props.isLoggedIn ? <Component {...props} /> : <Navigate to='./' />
       }
     </Route>
     </Routes>
