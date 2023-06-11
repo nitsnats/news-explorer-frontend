@@ -54,7 +54,7 @@ const Navigation = ({ isLoggedIn, navigationLink, isNavOpen }) => {
         </NavLink>
       );
     } else {
-      return null; // Return null instead of an empty statement
+      return; // Return null instead of an empty statement
     }
   }
 
@@ -68,7 +68,7 @@ const Navigation = ({ isLoggedIn, navigationLink, isNavOpen }) => {
       >
         Home
       </NavLink>
-      <SavedArticlesLink /> {/* Render the SavedArticlesLink component */}
+      {SavedArticlesLink()}
     </div>
   );
 };
