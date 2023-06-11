@@ -1,11 +1,8 @@
 # Product subject:
-
 ## news-explorer-frontend
-
 
 # project description:
 This is a frontend part of the News Explorer project. It is a single page application that allows users to search for news articles by keyword and save their favorite articles to their personal account. User can also delete saved articles from their account.
-
 
 # Technologies and techniques:
 *  FIGMA
@@ -56,7 +53,9 @@ This is a frontend part of the News Explorer project. It is a single page applic
 5. run frontend server with command npm run start
 6. change the baseUrl in the frontend repo src/utils/MainApi.js to http://localhost:3000
 
-
+# View Repositories
+Frontend: https://github.com/nitsnats/news-explorer-frontend 
+Backend: https://github.com/nitsnats/news-explorer-api
 
 # Project Link:
   # https://github.com/nitsnats/news-explorer-frontend.git
