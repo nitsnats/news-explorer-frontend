@@ -58,7 +58,7 @@ This is a frontend part of the News Explorer project. It is a single page applic
 * Backend: https://github.com/nitsnats/news-explorer-api
 
 # Project Link:
-  # https://github.com/nitsnats/news-explorer-frontend.git
+  # https://news.nitsnats.mooo.com
 
   
 # Contact:
