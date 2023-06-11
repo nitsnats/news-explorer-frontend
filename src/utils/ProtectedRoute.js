@@ -1,15 +1,15 @@
 import React from 'react';
-import { Route, Routes, Navigate } from 'react-router-dom';
+import {  Navigate } from 'react-router-dom';
 
 function ProtectedRoute({ component: Component, ...props }) {
   return (
-    <Routes>
-    <Route>
-      {() =>
+    // <Routes>
+    // <Route>
+      // {() =>
         props.isLoggedIn ? <Component {...props} /> : <Navigate to='./' />
-      }
-    </Route>
-    </Routes>
+      // }
+    // </Route>
+    // </Routes>
   );
 }
 

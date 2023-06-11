@@ -276,6 +276,7 @@ import NotFound from '../NotFound/NotFound';
 import ProtectedRoute from '../../utils/ProtectedRoute';
 import mainApi from '../../utils/MainApi';
 import newsApi from '../../utils/NewsApi';
+import { CurrentUserContext } from '../../contexts/CurrentUserContext';
 
 const App = () => {
   const [currentUser, setCurrentUser] = useState({});
@@ -388,6 +389,7 @@ const App = () => {
         .getUserInfo(token)
         .then((res) => {
           setCurrentUser(res);
+          console.log(res)
           setServerError(false);
           setLoggedIn(true);
         })
@@ -403,6 +405,7 @@ const App = () => {
     } else {
       return (
         <div className="app">
+          <CurrentUserContext.Provider value={currentUser.data}>
           <Routes>
             
 
@@ -449,6 +452,7 @@ const App = () => {
               path="/saved-news/*"
               element={
                 <>
+                
                   <Header
                     isLoggedIn={isLoggedIn}
                     isSavedNews={true}
@@ -463,6 +467,7 @@ const App = () => {
                     setIsNavOpen={setIsNavOpen}
                     isNavOpen={isNavOpen}
                   />
+                  
                   <ProtectedRoute
                     component={SavedNews}
                     isLoggedIn={isLoggedIn}
@@ -547,6 +552,7 @@ const App = () => {
               )}
             </Popup>
           ) : null}
+          </CurrentUserContext.Provider>
         </div>
       );
     }
