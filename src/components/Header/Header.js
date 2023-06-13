@@ -1,58 +1,99 @@
-import React, { useContext, useState } from 'react';
+import React, { useEffect,  useContext } from 'react';
 import { CurrentUserContext } from '../../contexts/CurrentUserContext';
 import Navigation from '../Navigation/Navigation';
+import { useNavigate, useLocation } from 'react-router-dom';
 
 const Header = (props) => {
-  const [isNavOpen, setIsNavOpen] = useState(false);
-
+  const {
+    setIsPopupOpen,
+    setFormPopup,
+    signoutHandler,
+    handlePopup,
+    isFormPopupOpen,
+    isSavedNews,
+    isPopupOpen,
+    isLoggedIn,
+    isNavOpen,
+    setIsNavOpen,
+  } = props;
   const currentUser = useContext(CurrentUserContext);
+  const navigate = useNavigate();
+  const location = useLocation();
+  // const willMount = useRef(true);
 
-  function togglePopup() {
-    props.togglePopup(true);
-    props.toggleFormPopup(true);
-    props.toggleIsRegisterPopup(false);
-    setIsNavOpen(false);
-  }
-
-  function handleSignout() {
-    props.toggleLoggedIn(false);
-    setIsNavOpen(false);
-  }
-
-  function toggleNavStatus() {
-    if (props.isFormPopupOpen) {
+  function setIsNavOpenStatus() {
+    if (isFormPopupOpen) {
       setIsNavOpen(false);
-      props.togglePopup(false);
-      props.toggleFormPopup(false);
+      setIsPopupOpen(false);
+      setFormPopup(false);
     } else {
       setIsNavOpen(!isNavOpen);
     }
   }
 
-  function navigationLink(activeClass) {
-    if (props.isSavedNews && !isNavOpen) {
-      return activeClass;
-    } else if (props.isSavedNews && isNavOpen) {
-      return '';
-    } else {
-      return '';
+  // function navigationLink(activeClass) {
+  //   if (isSavedNews && !isNavOpen) {
+  //     return activeClass;
+  //   } else if (isSavedNews && isNavOpen) {
+  //     return '';
+  //   } else {
+  //     return '';
+  //   }
+  // }
+
+
+  // function navigationLink(activeClass) {
+  //   return isSavedNews && !isNavOpen ? activeClass : '';
+  // }
+
+    // const compWillMount = (func) => {
+  //   if (willMount.current) func();
+  //   willMount.current = false;
+  // };
+
+  // compWillMount(() => {
+  //   navigate(location.pathname, { state: null });
+  //   return;
+  // });
+
+  const navigationLink = (activeClass) => {
+    return isSavedNews && !isNavOpen ? activeClass : '';
+  };
+  
+  useEffect(() => {
+    const handleNavigation = () => {
+      navigate(location.pathname, { state: null });
+    };
+  
+    handleNavigation();
+  
+    return () => {
+      handleNavigation();
+    };
+  }, []);
+  
+
+  useEffect(() => {
+    if (location.state === null || location.state === undefined) {
+      return;
+    } else if (location.state.useNavigate) {
+      handlePopup();
+      return;
     }
-  }
+    return;
+  }, [location.state, handlePopup]);
+
   return (
     <header className={`header ${isNavOpen ? 'header_nav-active' : ''}`}>
-      <nav className='header__size'>
+      <div className='header__size'>
         <p className={`header__logo ${navigationLink('header__logo_dark')} `}>
           NewsExplorer
         </p>
 
         <button
-          onClick={toggleNavStatus}
+          onClick={setIsNavOpenStatus}
           className={`header__icon ${isNavOpen ? 'header__icon_active' : ''}
-          ${
-    props.isFormPopupOpen || props.isPopupOpen
-      ? 'header__icon_active'
-      : ''
-    }
+          ${isFormPopupOpen || isPopupOpen ? 'header__icon_active' : ''}
           ${navigationLink('header__icon_dark')}`}
         ></button>
         <div
@@ -61,23 +102,23 @@ const Header = (props) => {
           }`}
         >
           <Navigation
-            isLoggedIn={props.isLoggedIn}
-            isSavedNews={props.isSavedNews}
+            isLoggedIn={isLoggedIn}
+            isSavedNews={isSavedNews}
             isNavOpen={isNavOpen}
             navigationLink={navigationLink}
           />
 
-          {props.isLoggedIn ? (
+          {isLoggedIn ? (
             <button
-              onClick={handleSignout}
+              onClick={signoutHandler ? signoutHandler : null}
               className={`header__logout
                 ${navigationLink('header__logout_dark')}`}
             >
-              {`${isNavOpen ? 'Sign out' : (currentUser.name = 'Nitsa')}`}
+              {isNavOpen ? 'Sign in' : `${currentUser && currentUser.name}`}
             </button>
           ) : (
             <button
-              onClick={togglePopup}
+              onClick={handlePopup}
               className={`header__signin
                 ${navigationLink('header__signin_dark')}`}
             >
@@ -85,9 +126,10 @@ const Header = (props) => {
             </button>
           )}
         </div>
-      </nav>
+      </div>
     </header>
   );
 };
 
 export default Header;
+

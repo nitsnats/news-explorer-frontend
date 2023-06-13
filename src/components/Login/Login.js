@@ -20,7 +20,7 @@ function Login({
           className='auth'
           title='Sign in'
           onSubmit={handleLoginSubmit}
-          to='/main'
+          to='/Main'
         >
           <input
             className='form__input-dark'

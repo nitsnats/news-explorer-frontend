@@ -1,147 +1,303 @@
-import React, { useState } from 'react';
-import {
-  BrowserRouter as Router,
-  Route,
-  Switch,
-  Redirect,
-} from 'react-router-dom';
-import { CurrentUserContext } from '../../contexts/CurrentUserContext';
+import React, { useState, useEffect, useCallback } from 'react';
+import { Routes, Route, useNavigate, Navigate } from 'react-router-dom';
 import Header from '../Header/Header';
 import Footer from '../Footer/Footer';
 import Main from '../Main/Main';
 import SavedNews from '../SavedNews/SavedNews';
-import SavedNewsHeader from '../SavedNewsHeader/SavedNewsHeader';
 import PopupWithForm from '../PopupWithForm/PopupWithForm';
 import Popup from '../Popup/Popup';
-import { allCards } from '../data/data';
+import Preloader from '../Preloader/Preloader';
+import NotFound from '../NotFound/NotFound';
+import ProtectedRoute from '../../utils/ProtectedRoute';
+import mainApi from '../../utils/MainApi';
+import newsApi from '../../utils/NewsApi';
+import { CurrentUserContext } from '../../contexts/CurrentUserContext';
 
 const App = () => {
-  const [cards, setCards] = useState(allCards);
   const [currentUser, setCurrentUser] = useState({});
-  const [isLoggedIn, toggleLoggedIn] = useState(false);
-  const [isRegisterPopup, toggleIsRegisterPopup] = useState(false);
-  const [isPopupOpen, togglePopup] = useState(false);
-  const [isFormPopupOpen, toggleFormPopup] = useState(false);
-  const [isRegisterSuccessPopupOpen, toggleRegisterSuccessPopup] = useState(
-    false
-  );
-  const [isRegisterSuccess, toggleRegisterSuccess] = useState(false);
+  const [isLoggedIn, setLoggedIn] = useState(false);
+  const [isRegisterPopup, setIsRegisterPopup] = useState(false);
+  const [isPopupOpen, setIsPopupOpen] = useState(false);
+  const [isFormPopupOpen, setFormPopup] = useState(false);
+  const [isRegisterSuccessPopupOpen, setRegisterSuccessPopup] = useState(false);
+  const [isRegisterSuccess, setRegisterSuccess] = useState(false);
+  const [isNavOpen, setIsNavOpen] = useState(false);
+  const [isLoading, setIsLoading] = useState(false);
+  const [serverError, setServerError] = useState(null);
+  const navigate = useNavigate();
 
   function registrationSuccess() {
-    toggleIsRegisterPopup(false);
-    toggleRegisterSuccessPopup(false);
-    toggleFormPopup(true);
+    setIsRegisterPopup(false);
+    setRegisterSuccessPopup(false);
+    setFormPopup(true);
   }
-  function registrationFail() {
-    toggleIsRegisterPopup(true);
-    toggleRegisterSuccessPopup(false);
-    toggleFormPopup(true);
-  }
-  const handleSignout = () => {
-    toggleLoggedIn(false);
-  };
-  return (
-    <CurrentUserContext.Provider value={currentUser}>
-      {/* <div className='app'> */}
-      <div className='page'>
-        <Router>
-          <Switch>
-            <Route exact path='/'>
-              <Header
-                isLoggedIn={isLoggedIn}
-                toggleLoggedIn={toggleLoggedIn}
-                isPopupOpen={isPopupOpen}
-                isFormPopupOpen={isFormPopupOpen}
-                toggleIsRegisterPopup={toggleIsRegisterPopup}
-                togglePopup={togglePopup}
-                toggleFormPopup={toggleFormPopup}
-                isSavedNews={false}
-              />
-              <Main isLoggedIn={isLoggedIn} cards={cards} />
-              <Footer />
-            </Route>
-            <Route exact path='/saved-news'>
-              <Header
-                isLoggedIn={isLoggedIn}
-                isSavedNews={true}
-                isPopupOpen={isPopupOpen}
-                isFormPopupOpen={isFormPopupOpen}
-                toggleIsRegisterPopup={toggleIsRegisterPopup}
-                toggleFormPopup={toggleFormPopup}
-                togglePopup={togglePopup}
-                toggleLoggedIn={toggleLoggedIn}
-              />
-              <SavedNewsHeader isLoggedIn={isLoggedIn} />
-              <SavedNews
-                isLoggedIn={isLoggedIn}
-                cards={cards}
-                handleSignout={handleSignout}
-              />
-              <Footer />
-            </Route>
-          </Switch>
-          <Redirect from='*' to='/' />
-        </Router>
-        {isFormPopupOpen ? (
-          <Popup
-            togglePopup={togglePopup}
-            toggleFormPopup={toggleFormPopup}
-            isPopupOpen={isPopupOpen}
-          >
-            <PopupWithForm
-              isRegisterPopup={isRegisterPopup}
-              toggleIsRegisterPopup={toggleIsRegisterPopup}
-              isFormPopupOpen={isFormPopupOpen}
-              toggleFormPopup={toggleFormPopup}
-              isRegisterSuccessPopupOpen={isRegisterSuccessPopupOpen}
-              toggleRegisterSuccessPopup={toggleRegisterSuccessPopup}
-              togglePopup={togglePopup}
-              toggleLoggedIn={toggleLoggedIn}
-              isRegisterSuccess={isRegisterSuccess}
-              toggleRegisterSuccess={toggleRegisterSuccess}
-            />
-          </Popup>
-        ) : (
-          ''
-        )}
 
-        {isRegisterSuccessPopupOpen ? (
-          <Popup
-            isPopupOpen={isPopupOpen}
-            togglePopup={togglePopup}
-            toggleFormPopup={toggleFormPopup}
-          >
-            {isRegisterSuccess ? (
-              <>
-                <h2 className='popup__title'>
-                  Registration completed successfully!
-                </h2>
-                <button
-                  className='popup__form-text popup__form-button'
-                  onClick={registrationSuccess}
-                >
-                  Sign in
-                </button>
-              </>
-            ) : (
-              <>
-                <h2 className='popup__title'>Oops! Something went wrong</h2>
-                <button
-                  className='popup__form-text popup__form-button'
-                  onClick={registrationFail}
-                >
-                  Try again
-                </button>
-              </>
-            )}
-          </Popup>
-        ) : (
-          ''
-        )}
-      </div>
-      {/* </div> */}
-    </CurrentUserContext.Provider>
-  );
+  function registrationFail() {
+    setIsRegisterPopup(true);
+    setRegisterSuccessPopup(false);
+    setFormPopup(true);
+  }
+
+  const handlePopup = useCallback(() => {
+    setIsPopupOpen(true);
+    setFormPopup(true);
+    setIsRegisterPopup(false);
+    setIsNavOpen(false);
+  }, [setIsPopupOpen, setFormPopup, setIsRegisterPopup, setIsNavOpen]);
+
+  async function getUserInfo(token) {
+    const returnedUserInfo = await mainApi.getUserInfo(token);
+    return returnedUserInfo;
+  }
+
+  function registerHandler(email, password, name) {
+    return mainApi.register(email, password, name);
+  }
+
+  function signinHandler(email, password) {
+    return mainApi.authorize(email, password);
+  }
+
+  // function signoutHandler() {
+  //   setLoggedIn(false);
+  //   setIsNavOpen(false);
+  //   localStorage.removeItem('articles');
+  //   localStorage.removeItem('token');
+  //   localStorage.removeItem('keyword-search');
+  //   navigate('/');
+  // }
+  // function signoutHandler() {
+  //   useEffect(() => {
+  //     setLoggedIn(false);
+  //     setIsNavOpen(false);
+  //     localStorage.removeItem('articles');
+  //     localStorage.removeItem('token');
+  //     localStorage.removeItem('keyword-search');
+  //     navigate('/');
+  //   }, []);
+  // }
+  const signoutHandler = () => {
+    setLoggedIn(false);
+    setIsNavOpen(false);
+    localStorage.removeItem('articles');
+    localStorage.removeItem('token');
+    localStorage.removeItem('keyword-search');
+    navigate('/');
+  };
+  
+  useEffect(() => {
+    signoutHandler();
+  }, []);
+  
+
+  function getUserArticles(token) {
+    localStorage.removeItem('articles');
+    return mainApi.getArticles(token);
+  }
+
+  function deleteArticleHandler(articleId) {
+    if (articleId) {
+      const token = localStorage.getItem('token');
+      localStorage.removeItem('articles');
+      return mainApi.deleteArticle(articleId, token);
+    } else try{
+      throw new Error('News ID not deleted');
+    } catch (e) {
+      console.log(e);
+    }
+  }
+
+  function addArticleHandler(article) {
+    if (article) {
+      return mainApi.addArticle(article);
+    } else try{
+      throw new Error('No article added')
+    } catch (e) {
+      console.log(e);
+    }
+  }
+
+  async function searchHandler(keyword) {
+    return newsApi.search(keyword);
+  }
+
+  useEffect(() => {
+    const token = localStorage.getItem('token');
+    if (token) {
+      mainApi
+        .getUserInfo(token)
+        .then((res) => {
+          setCurrentUser(res);
+          console.log(res)
+          setServerError(false);
+          setLoggedIn(true);
+        })
+        .catch((err) => console.log(err));
+    }
+  }, []);
+
+  function checkLoggedIn() {
+    if (isLoggedIn === null && serverError === null) {
+      return <Preloader />;
+    } else if (serverError) {
+      return <NotFound error={true} />;
+    } else {
+      return (
+        <div className="app">
+          <CurrentUserContext.Provider value={currentUser.data}>
+          <Routes>
+            
+
+            <Route
+              exact
+              path="/"
+              element={
+                <>
+                  <Header
+                    isLoggedIn={isLoggedIn}
+                    setLoggedIn={setLoggedIn}
+                    isPopupOpen={isPopupOpen}
+                    isFormPopupOpen={isFormPopupOpen}
+                    setIsRegisterPopup={setIsRegisterPopup}
+                    setIsPopupOpen={setIsPopupOpen}
+                    setFormPopup={setFormPopup}
+                    isSavedNews={false}
+                    signoutHandler={signoutHandler}
+                    handlePopup={handlePopup}
+                    setIsNavOpen={setIsNavOpen}
+                    isNavOpen={isNavOpen}
+                  />
+                  <Main
+                    isLoggedIn={isLoggedIn}
+                    isLoading={isLoading}
+                    setIsLoading={setIsLoading}
+                    isPopupOpen={isPopupOpen}
+                    handlePopup={handlePopup}
+                    isFormPopupOpen={isFormPopupOpen}
+                    setIsPopupOpen={setIsPopupOpen}
+                    setFormPopup={setFormPopup}
+                    getUserArticles={getUserArticles}
+                    addArticleHandler={addArticleHandler}
+                    searchHandler={searchHandler}
+                    deleteArticleHandler={deleteArticleHandler}
+                  />
+                  <Footer />
+                </>
+              }
+            />
+
+           <Route
+              exact
+              path="/saved-news/*"
+              element={
+                <>
+                
+                  <Header
+                    isLoggedIn={isLoggedIn}
+                    isSavedNews={true}
+                    isPopupOpen={isPopupOpen}
+                    isFormPopupOpen={isFormPopupOpen}
+                    setIsRegisterPopup={setIsRegisterPopup}
+                    setFormPopup={setFormPopup}
+                    setIsPopupOpen={setIsPopupOpen}
+                    setLoggedIn={setLoggedIn}
+                    signoutHandler={signoutHandler}
+                    handlePopup={handlePopup}
+                    setIsNavOpen={setIsNavOpen}
+                    isNavOpen={isNavOpen}
+                  />
+                  
+                  <ProtectedRoute
+                    component={SavedNews}
+                    isLoggedIn={isLoggedIn}
+                    isLoading={isLoading}
+                    setIsLoading={setIsLoading}
+                    setFormPopup={setFormPopup}
+                    setIsPopupOpen={setIsPopupOpen}
+                    handlePopup={handlePopup}
+                    getUserArticles={getUserArticles}
+                    deleteArticleHandler={deleteArticleHandler}
+                    addArticleHandler={addArticleHandler}
+                  />
+                  <Footer />
+                </>
+              }
+            />
+
+            <Route
+              path="*"
+              element={
+                <>
+                  <Navigate to="/" replace />
+                </>
+              }
+            />
+          </Routes>
+
+          {isFormPopupOpen ? (
+            <Popup
+              setIsPopupOpen={setIsPopupOpen}
+              setFormPopup={setFormPopup}
+              isPopupOpen={isPopupOpen}
+            >
+              <PopupWithForm
+                isRegisterPopup={isRegisterPopup}
+                setIsRegisterPopup={setIsRegisterPopup}
+                isFormPopupOpen={isFormPopupOpen}
+                setFormPopup={setFormPopup}
+                isRegisterSuccessPopupOpen={isRegisterSuccessPopupOpen}
+                setRegisterSuccessPopup={setRegisterSuccessPopup}
+                setIsPopupOpen={setIsPopupOpen}
+                setLoggedIn={setLoggedIn}
+                isRegisterSuccess={isRegisterSuccess}
+                setRegisterSuccess={setRegisterSuccess}
+                registerHandler={registerHandler}
+                getUserInfo={getUserInfo}
+                currentUser={currentUser}
+                setCurrentUser={setCurrentUser}
+                signinHandler={signinHandler}
+              />
+            </Popup>
+          ) : null}
+
+          {isRegisterSuccessPopupOpen ? (
+            <Popup
+              isPopupOpen={isPopupOpen}
+              setIsPopupOpen={setIsPopupOpen}
+              setFormPopup={setFormPopup}
+            >
+              {isRegisterSuccess ? (
+                <>
+                  <h2 className="popup__title">
+                    Registration completed successfully!
+                  </h2>
+                  <button
+                    className="popup__form-text popup__form-button"
+                    onClick={registrationSuccess}
+                  >
+                    Sign in
+                  </button>
+                </>
+              ) : (
+                <>
+                  <h2 className="popup__title">Oops! Something went wrong</h2>
+                  <button
+                    className="popup__form-text popup__form-button"
+                    onClick={registrationFail}
+                  >
+                    Try again
+                  </button>
+                </>
+              )}
+            </Popup>
+          ) : null}
+          </CurrentUserContext.Provider>
+        </div>
+      );
+    }
+  }
+  return checkLoggedIn();
 };
 
 export default App;
+

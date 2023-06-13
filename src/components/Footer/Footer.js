@@ -6,7 +6,6 @@ import github from '../../images/github_icon.svg';
 function Footer() {
   return (
     <footer className='footer'>
-      {/* <div className='footer__container'> */}
       <p className='footer__copyright'>
           © {new Date().getFullYear()} Nitsa | New API
       </p>
