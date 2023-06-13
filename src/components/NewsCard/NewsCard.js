@@ -142,23 +142,20 @@ const NewsCard = ({
     return;
   }, [_id]);
 
-
-  const imgStyle={ backgroundImage: `url("${image}")`}
-
   return (
     
     <li className='news-card'>
-      {setDeleteSave()}
-      <a
-        className='news-card__anchor'
-        href={url}
-        target='_blank'
-        rel='noopener noreferrer'
+      {setDeleteSave()}	      
+      <a	      
+        className='news-card__anchor'	       
+        href={url}	       
+        target='_blank'	       
+        rel='noopener noreferrer'	        
       >
         {keywords()}
         <div
           className='news-card__image'
-          style={imgStyle}
+          style={{ backgroundImage: `url(${image})`}}
         ></div>
         <div className='news-card__info-container'>
           <p className='news-card__date'>{formatDate()}</p>

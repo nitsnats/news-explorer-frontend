@@ -483,12 +483,12 @@ const SavedNews = ({
           const newCards = res.data.map((card) => ({
             _id: card._id,
             keyword: card.keyword,
-            date: card.date, 
+            date: card.publishedAt, 
             title: card.title,
-            description: card.text, 
+            description: card.description, 
             source: card.source,
             url: card.url,
-            image: card.image,
+            image: card.urlToImage,
           }));
 
           const keywordRankArr = keywordRank(newCards);
