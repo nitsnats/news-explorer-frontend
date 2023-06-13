@@ -365,16 +365,20 @@ const App = () => {
       const token = localStorage.getItem('token');
       localStorage.removeItem('articles');
       return mainApi.deleteArticle(articleId, token);
-    } else {
+    } else try{
       throw new Error('News ID not deleted');
+    } catch (e) {
+      console.log(e);
     }
   }
 
   function addArticleHandler(article) {
     if (article) {
       return mainApi.addArticle(article);
-    } else {
-      throw new Error('No article added');
+    } else try{
+      throw new Error('No article added')
+    } catch (e) {
+      console.log(e);
     }
   }
 
