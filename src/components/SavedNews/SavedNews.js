@@ -485,10 +485,10 @@ const SavedNews = ({
             keyword: card.keyword,
             date: card.publishedAt, 
             title: card.title,
-            description: card.description, 
+            description: card.text, 
             source: card.source,
             url: card.url,
-            image: card.urlToImage,
+            image: card.image,
           }));
 
           const keywordRankArr = keywordRank(newCards);
